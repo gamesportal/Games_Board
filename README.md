@@ -59,3 +59,39 @@ API Endpoints
 📌 Endpoint: games_portal/api/players/top-players/game?gameId=1&limit=2
 
 📌 Endpoint: games_portal/api/players/top-players/game?gameId=1&country="India"&limit=2
+
+Secure Password Storage: Passwords are hashed using BCrypt.
+
+Here is the SQL script to set up the database locally using MySQL:
+
+CREATE DATABASE sql12765461 ;
+USE sql12765461 ;
+CREATE TABLE game_db (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    deviceId varchar(255) NOT NULL,
+    username varchar(255) NULL,
+    platform varchar(255) NOT NULL,
+    creationDate DATETIME NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE player_progression (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    player_id BIGINT NOT NULL,
+    level INT NOT NULL,
+    rank VARCHAR(50) NOT NULL,
+    currency INT NOT NULL,
+    rewardsCollected TEXT,
+    last_active DATETIME NOT NULL,
+    country VARCHAR(50) NOT NULL
+);
+
+CREATE TABLE leaderboard_entry (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    player_id BIGINT NOT NULL,
+    game_id BIGINT NOT NULL,
+    score INT NOT NULL,
+    timestamp DATETIME NOT NULL,
+    country VARCHAR(50) NOT NULL
+);
+
